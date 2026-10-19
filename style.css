@@ -1,0 +1,491 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  background: radial-gradient(circle at center, #fdf6f0 0%, #f5e1da 55%, #ebcfc4 100%);
+  font-family: 'Quicksand', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  overflow-x: hidden;
+  position: relative;
+}
+
+#flowerCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.container {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 540px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ================= MÀN HÌNH NHẬP THÔNG TIN ================= */
+.welcome-box {
+  width: 100%;
+  max-width: 460px;
+  background: #fffdf9;
+  border: 2px solid #d4af37;
+  outline: 6px double rgba(212, 175, 55, 0.35);
+  outline-offset: -12px;
+  border-radius: 16px;
+  padding: 36px 30px;
+  text-align: center;
+  box-shadow: 0 20px 45px rgba(122, 62, 62, 0.18);
+  animation: fadeIn 0.6s ease;
+}
+
+.ornament-top,
+.ornament-bottom {
+  color: #c59b27;
+  font-size: 18px;
+  letter-spacing: 4px;
+}
+
+.ornament-top {
+  margin-bottom: 6px;
+}
+
+.ornament-bottom {
+  margin-top: 18px;
+  font-size: 14px;
+}
+
+.script-title {
+  font-family: 'Dancing Script', cursive;
+  font-size: 42px;
+  color: #8b2635;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #6d5a50;
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+
+.form-group {
+  text-align: left;
+  margin-bottom: 16px;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  font-size: 13px;
+  color: #7a3e3e;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #d4af37;
+  border-radius: 8px;
+  background: #fffaf3;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 15px;
+  color: #3d2c2c;
+  outline: none;
+  transition: 0.25s;
+}
+
+input:focus,
+select:focus {
+  border-color: #8b2635;
+  box-shadow: 0 0 0 3px rgba(139, 38, 53, 0.12);
+}
+
+.btn-gold {
+  width: 100%;
+  padding: 13px;
+  margin-top: 8px;
+  background: linear-gradient(135deg, #8b2635 0%, #b83b5e 100%);
+  color: #fff8e7;
+  border: 1px solid #d4af37;
+  border-radius: 8px;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.btn-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(139, 38, 53, 0.3);
+}
+
+/* ================= HIỆU ỨNG THIỆP CƯỚI MỞ 2 CÁNH 3D ================= */
+.wedding-scene {
+  width: 100%;
+  perspective: 1500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: fadeIn 0.6s ease;
+}
+
+.hint-text {
+  color: #8b2635;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 14px;
+  text-align: center;
+  background: rgba(255, 250, 242, 0.85);
+  padding: 6px 16px;
+  border-radius: 20px;
+  border: 1px solid #e2c275;
+}
+
+.wedding-card {
+  width: 100%;
+  max-width: 470px;
+  min-height: 560px;
+  position: relative;
+  transform-style: preserve-3d;
+  box-shadow: 0 25px 55px rgba(89, 31, 31, 0.28);
+  border-radius: 12px;
+}
+
+/* Mặt trong tấm thiệp */
+.card-inside {
+  width: 100%;
+  min-height: 560px;
+  background: linear-gradient(180deg, #fffdf9 0%, #fbf3e8 100%);
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+}
+
+.gold-frame {
+  width: 100%;
+  border: 2px solid #c59b27;
+  outline: 1px solid #e3c878;
+  outline-offset: -7px;
+  border-radius: 8px;
+  padding: 28px 22px;
+  position: relative;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.corner {
+  position: absolute;
+  color: #c59b27;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.corner.tl { top: 8px; left: 10px; }
+.corner.tr { top: 8px; right: 10px; }
+.corner.bl { bottom: 8px; left: 10px; }
+.corner.br { bottom: 8px; right: 10px; }
+
+.card-header-sub {
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: #a67c1e;
+  font-weight: 700;
+}
+
+.card-date {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 34px;
+  color: #8b2635;
+  letter-spacing: 4px;
+  margin-top: 2px;
+}
+
+.divider-gold {
+  color: #c59b27;
+  font-size: 14px;
+  margin: 4px 0 8px;
+}
+
+.respect-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 16px;
+  color: #7d6657;
+}
+
+.teacher-name {
+  font-family: 'Dancing Script', cursive;
+  font-size: 38px;
+  color: #8b2635;
+  margin: 2px 0;
+}
+
+.teacher-subject {
+  display: inline-block;
+  align-self: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: #8b2635;
+  background: #faebd7;
+  border: 1px solid #d4af37;
+  padding: 4px 14px;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+}
+
+.card-message-box {
+  background: rgba(255, 255, 255, 0.75);
+  border-top: 1px solid #e6cfa3;
+  border-bottom: 1px solid #e6cfa3;
+  padding: 16px 14px;
+  margin: 6px 0 14px;
+}
+
+.card-message {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 19px;
+  line-height: 1.65;
+  color: #3b2828;
+  text-align: center;
+}
+
+.card-signature {
+  text-align: right;
+  padding-right: 10px;
+}
+
+.card-signature p {
+  font-size: 13px;
+  font-style: italic;
+  color: #7d6657;
+}
+
+.card-signature h4 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 26px;
+  color: #8b2635;
+  margin-top: 2px;
+}
+
+/* ================= 2 CÁNH CỬA THIỆP CƯỚI (GATEFOLD DOORS) ================= */
+.card-door {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(135deg, #8b1e2f 0%, #6e1423 100%);
+  z-index: 5;
+  transition: transform 1.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transform-style: preserve-3d;
+  padding: 16px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.35);
+}
+
+.door-left {
+  left: 0;
+  transform-origin: left center;
+  border-radius: 12px 0 0 12px;
+  border-right: 1.5px solid #d4af37;
+}
+
+.door-right {
+  right: 0;
+  transform-origin: right center;
+  border-radius: 0 12px 12px 0;
+  border-left: 1.5px solid #d4af37;
+}
+
+.door-pattern {
+  width: 100%;
+  height: 100%;
+  border: 2px solid #d4af37;
+  border-radius: 6px;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: radial-gradient(rgba(212, 175, 55, 0.16) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+
+.door-inner-border {
+  width: 100%;
+  height: 100%;
+  border: 1px dashed rgba(212, 175, 55, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.door-floral {
+  color: rgba(212, 175, 55, 0.45);
+  font-size: 38px;
+}
+
+/* Dải ruy băng ngang trên 2 cánh thiệp */
+.ribbon-left,
+.ribbon-right {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  height: 28px;
+  background: linear-gradient(180deg, #e5c158 0%, #c59b27 50%, #9f7916 100%);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+}
+
+.ribbon-left { left: 0; }
+.ribbon-right { right: 0; }
+
+/* Con dấu sáp vàng ở giữa */
+.wax-seal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #f5d77f, #c59b27 65%, #8c6910 100%);
+  border: 3px solid #fbe6a2;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45), inset 0 0 10px rgba(120, 75, 0, 0.6);
+  z-index: 10;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.6s ease, opacity 0.5s ease;
+  animation: pulseSeal 2s infinite;
+}
+
+@keyframes pulseSeal {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.07);
+  }
+}
+
+.seal-inner {
+  width: 74px;
+  height: 74px;
+  border-radius: 50%;
+  border: 1.5px dashed #7a5805;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #5c131d;
+}
+
+.seal-inner span {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.seal-inner small {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-top: 3px;
+}
+
+/* Trạng thái khi mở 2 cánh thiệp */
+.wedding-card.open .door-left {
+  transform: rotateY(-140deg);
+}
+
+.wedding-card.open .door-right {
+  transform: rotateY(140deg);
+}
+
+.wedding-card.open .wax-seal {
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0.3);
+}
+
+/* Nút điều khiển bên dưới */
+.card-controls {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+  z-index: 12;
+}
+
+.btn-outline {
+  background: rgba(255, 253, 249, 0.92);
+  color: #8b2635;
+  border: 1.5px solid #c59b27;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-outline:hover {
+  background: #8b2635;
+  color: #fff;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 520px) {
+  .wedding-card.open .door-left {
+    transform: rotateY(-115deg);
+  }
+  .wedding-card.open .door-right {
+    transform: rotateY(115deg);
+  }
+  .teacher-name {
+    font-size: 32px;
+  }
+  .card-message {
+    font-size: 17px;
+  }
+}

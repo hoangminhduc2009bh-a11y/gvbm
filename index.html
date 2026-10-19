@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thiệp Chúc Mừng 20/10 Dành Tặng Cô</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400&family=Dancing+Script:wght@600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="flowerCanvas"></canvas>
+
+  <div class="container">
+    <!-- Bước 1: Khung nhập tên & chọn môn dạy -->
+    <div class="welcome-box" id="welcomeBox">
+      <div class="ornament-top">❦ ❁ ❦</div>
+      <h1 class="script-title">Thiệp Mừng 20/10</h1>
+      <p class="subtitle">Kính mời Cô nhập tên và chọn bộ môn để mở tấm thiệp đặc biệt từ lớp ạ!</p>
+
+      <div class="form-group">
+        <label for="teacherName">Tên của Cô:</label>
+        <input type="text" id="teacherName" placeholder="VD: Lan, Hương, Mai...">
+      </div>
+
+      <div class="form-group">
+        <label for="subject">Bộ môn Cô giảng dạy:</label>
+        <select id="subject">
+          <option value="toan">Môn Toán</option>
+          <option value="li">Môn Vật Lí</option>
+          <option value="sinh">Môn Sinh Học</option>
+          <option value="anh">Môn Tiếng Anh</option>
+          <option value="van_gvcn">Môn Ngữ Văn</option>
+        </select>
+      </div>
+
+      <button id="toCardBtn" class="btn-gold">Nhận Thiệp 20/10 ✨</button>
+      <div class="ornament-bottom">─── ❖ ───</div>
+    </div>
+
+    <!-- Bước 2: Thiệp mở 2 cánh 3D kiểu Thiệp Cưới sang trọng -->
+    <div class="wedding-scene hidden" id="weddingScene">
+      <p class="hint-text" id="hintText">✨ Chạm vào con dấu sáp ở giữa để mở / đóng thiệp ✨</p>
+
+      <div class="wedding-card" id="weddingCard">
+        <!-- Mặt trong của thiệp -->
+        <div class="card-inside">
+          <div class="gold-frame">
+            <span class="corner tl">✾</span>
+            <span class="corner tr">✾</span>
+            <span class="corner bl">✾</span>
+            <span class="corner br">✾</span>
+
+            <p class="card-header-sub">HAPPY VIETNAMESE WOMEN'S DAY</p>
+            <h2 class="card-date">20 . 10</h2>
+            <div class="divider-gold">─── ❁ ───</div>
+
+            <p class="respect-label">Trân trọng kính gửi</p>
+            <h3 class="teacher-name" id="cardTitle">Cô kính mến</h3>
+            <p class="teacher-subject" id="cardSubject">Giáo viên Môn Toán</p>
+
+            <div class="card-message-box">
+              <p class="card-message" id="cardMessage"></p>
+            </div>
+
+            <div class="card-signature">
+              <p>Với tất cả lòng biết ơn,</p>
+              <h4 id="cardSender"></h4>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cánh cửa trái (Bìa trái thiệp cưới) -->
+        <div class="card-door door-left">
+          <div class="door-pattern">
+            <div class="door-inner-border">
+              <span class="door-floral">❀</span>
+            </div>
+          </div>
+          <div class="ribbon-left"></div>
+        </div>
+
+        <!-- Cánh cửa phải (Bìa phải thiệp cưới) -->
+        <div class="card-door door-right">
+          <div class="door-pattern">
+            <div class="door-inner-border">
+              <span class="door-floral">❀</span>
+            </div>
+          </div>
+          <div class="ribbon-right"></div>
+        </div>
+
+        <!-- Con dấu sáp vàng ở chính giữa 2 cánh thiệp -->
+        <button class="wax-seal" id="waxSeal" title="Chạm để mở thiệp">
+          <div class="seal-inner">
+            <span>20/10</span>
+            <small>MỞ THIỆP</small>
+          </div>
+        </button>
+      </div>
+
+      <div class="card-controls">
+        <button id="toggleDoorBtn" class="btn-outline">Đóng / Mở Cánh Thiệp</button>
+        <button id="backBtn" class="btn-outline">⬅ Chọn lại thông tin</button>
+      </div>
+    </div>
+  </div>
+
+  <audio id="myAudio" autoplay="autoplay">
+      <source src="music/nhac.mp3" type="audio/mp3" />
+  </audio>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
