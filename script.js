@@ -52,6 +52,14 @@ const cardSubject = document.getElementById("cardSubject");
 const cardMessage = document.getElementById("cardMessage");
 const cardSender = document.getElementById("cardSender");
 
+function playMusic() {
+  const audio = document.getElementById("myAudio");
+  if (audio) {
+    audio.play().catch(err => {
+      console.log("Lỗi phát âm thanh:", err);
+    });
+  }
+}
 // Khi Cô bấm "Nhận Thiệp 20/10"
 toCardBtn.addEventListener("click", () => {
   const rawName = teacherNameInput.value.trim();
@@ -81,6 +89,7 @@ toCardBtn.addEventListener("click", () => {
 
 // Bấm vào con dấu sáp để mở thiệp
 waxSeal.addEventListener("click", () => {
+  playMusic();
   weddingCard.classList.add("open");
 });
 
